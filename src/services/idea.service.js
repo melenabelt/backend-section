@@ -2,8 +2,8 @@ const BaseService = require("./base.service");
 let _ideaRepository = null;
 
 class IdeaService extends BaseService{
-  constructor({_ideaRepository}){
-    super(_ideaRepository);
+  constructor({IdeaRepository}){
+    super(IdeaRepository);
     _ideaRepository = IdeaRepository;
   }
 
@@ -11,7 +11,7 @@ class IdeaService extends BaseService{
     if(!author){
       const error = new Error();
       error.status = 400;
-      error.message = "userid must be sent";
+      error.message = "userId must be sent";
       throw error;
     }
     return await _ideaRepository.getUserIdeas(author);
@@ -28,9 +28,9 @@ class IdeaService extends BaseService{
     const idea = await _ideaRepository.get(ideaId);
     if(!idea){
       const error = new Error();
-        error.status = 404;
-        error.message = "idea does not exist";
-        throw error;
+      error.status = 404;
+      error.message = "idea does not exist";
+      throw error;
     }
     idea.upvotes.push(true);
 
