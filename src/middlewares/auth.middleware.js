@@ -7,7 +7,7 @@ module.exports = function(req, res, next){
     const error = new Error();
     error.message = "Token must be sent";
     error.status = 400;
-    throw errow;
+    throw error;
   }
 
   jwt.verify(token, JWT_SECRET, function(err, decodedToken){
@@ -15,7 +15,7 @@ module.exports = function(req, res, next){
       const error = new Error();
       error.message = "Invalid token";
       error.status = 401;
-      throw errow;
+      throw error;
     }
     req.user = decodedToken.user;
     next();
